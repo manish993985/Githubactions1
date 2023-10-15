@@ -18,20 +18,21 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1  # Replace with your desired region
+        aws-region: ap-south-1  # Replace with your desired region
 
     - name: Initialize Terraform
       run: terraform init
       working-directory: terraform/module
 
     - name: Plan Terraform Changes
-      run: terraform plan
+      run: terraform plan -var-file="manish.tfvars"
       working-directory: terraform/module
       env:
         TF_VAR_my_variable: ${{ secrets.MY_VARIABLE }}  # Set any required variables
 
     - name: Destroy Terraform Resources (Optional)
-      run: terraform destroy -auto-approve
+      run: terraform destroy -var-file="manish.tfvars" -auto-approve
+
       working-directory: terraform/module
       env:
         TF_VAR_my_variable: ${{ secrets.MY_VARIABLE }}  # Set any required variables
