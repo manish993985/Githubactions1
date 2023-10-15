@@ -31,7 +31,7 @@ jobs:
         working-directory: module/
 
       - name: Plan Terraform Changes
-        run: terraform plan -var-file="manish.tfvars"
+        run: terraform plan -var-file=manish.tfvars -out=tfplan
         working-directory: module/
         env:
           TF_VAR_my_variable: ${{ secrets.MY_VARIABLE }}  # Set any required variables
