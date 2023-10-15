@@ -16,7 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: module
+        working-directory: module/
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -28,16 +28,16 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
-        working-directory: terraform/module
+        working-directory: module/
 
       - name: Plan Terraform Changes
         run: terraform plan -var-file="manish.tfvars"
-        working-directory: terraform/module
+        working-directory: module/
         env:
           TF_VAR_my_variable: ${{ secrets.MY_VARIABLE }}  # Set any required variables
 
       - name: Apply Terraform Changes
         run: terraform apply -var-file="manish.tfvars" -auto-approve
-        working-directory: terraform/module
+        working-directory: module/
         env:
           TF_VAR_my_variable: ${{ secrets.MY_VARIABLE }}
