@@ -16,7 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: module
+        working-directory: module/
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
@@ -28,14 +28,14 @@ jobs:
 
       - name: Initialize Terraform
         run: terraform init
-        working-directory: module
+        working-directory: module/
 
       - name: Plan Terraform Changes
         run: terraform plan -var-file="manish.tfvars"
-        working-directory: module
+        working-directory: module/
        
       - name: Destroy Terraform Resources (Optional)
         run: terraform destroy -var-file="manish.tfvars" -auto-approve
-        working-directory: module
+        working-directory: module/
         
 
