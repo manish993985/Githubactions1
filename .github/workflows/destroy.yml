@@ -1,10 +1,15 @@
 name: Terraform Destroy Workflow
 
 on:
-  push:
-    branches:
-      - main
-
+  workflow_dispatch:
+    inputs:
+      destroy:
+        description: 'Destroy all resources'
+        required: true
+        
+env:
+  region: ap-south-1
+  
 jobs:
   terraform:
     name: Terraform Actions
